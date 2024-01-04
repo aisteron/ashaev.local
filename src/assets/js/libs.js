@@ -57,3 +57,46 @@ export async function xml(action, data, path){
 		xhr.send(body);
 	})
 }
+
+export const sw = {
+	async load(){
+		
+		return new Promise(resolve =>{
+			if(qs(['swiper'])){resolve(true); return}
+			let script = document.createElement("script")
+			script.src="/vendors/swiper/swiper-bundle.min.js"
+			script.setAttribute("swiper","")
+			qs(".scripts-area").appendChild(script)
+			
+			script.onload = () => {
+				
+				let style = loadCSS("/vendors/swiper/swiper-bundle.min.css")
+				onloadCSS(style, () => {
+					//console.log('%c Swiper loaded', 'color: #666')
+					resolve(true)
+				})
+			}
+		})
+	},
+
+	init(el,options){ new Swiper(el, options) }
+}
+
+export const fancy = {
+	async load(){
+		
+		return new Promise(resolve =>{
+			if(qs(['fancy'])){resolve(true); return}
+			let script = document.createElement("script")
+			script.src="/vendors/fancy/fancybox.umd.js"
+			script.setAttribute("fancy","")
+			qs(".scripts-area").appendChild(script)
+			
+			script.onload = () => {
+				let style = loadCSS("/vendors/fancy/fancybox.css")
+				onloadCSS(style, () =>  resolve(true))
+			}
+		})
+	},
+
+}
