@@ -19,6 +19,18 @@ async function run_widgets(){
         nextEl: qs(".next",port),
         prevEl: qs(".prev",port),
       },
+			breakpoints: {
+
+        480: {
+          slidesPerView: 1,
+					spaceBetween: 20,
+        },
+        991: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+
+      },
 		}
 		sw.init(qs('.swiper', port), options)
 	}

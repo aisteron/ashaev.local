@@ -6,12 +6,17 @@ header
 	border-bottom: 1px solid #000
 	padding-top: 22px !important
 	padding-bottom: 19px !important
+	@media(max-width: 480px)
+		margin: 0 -1rem
+		border-top: none
 	a.logo
 		flex-grow: 1
 	nav
 		font-family: 'DIN-Condensed'
 		text-transform: uppercase
 		font-size: 24px
+		@media(max-width:870px)
+			display: none
 		a
 			text-decoration: none
 			color: #686868
@@ -20,6 +25,8 @@ header
 		ul
 			display: flex
 			gap: 43px
+			@media(max-width: 1024px)
+				gap: 1rem
 			li
 				&.cb, &.phone a
 					color: $red
@@ -31,48 +38,53 @@ footer
 	position: absolute
 	bottom: -216px
 	border-bottom: 1rem solid #D9DAE2
+	width: calc(100% - 240px)
+	@media(max-width: 1360px)
+		width: calc(100% - 120px)
+	@media(max-width: 1024px)
+		width: calc(100% - 64px) !important
+		.prefooter > div
+			width: 300% !important
+	@media(max-width: 960px)
+		bottom: -240px
+		width: 100% !important
+		left: 0
+	@media(max-width: 680px)
+		bottom: auto	
+		.prefooter > div
+			width: 500% !important
 	.prefooter
-		color: #eee
-		//width: 600px
+		background-color: #D6D6D6
+		font-family: 'DIN-Condensed'
+
 		overflow: hidden
 		position: relative
-		height: 30px
+		height: 40px
 		> div
 			width: 200%
+			padding-top: 3px
 			position: absolute
 			overflow: hidden
-			animation: marquee 5s linear infinite
+			animation: marquee 25s linear infinite
 			span
 				float: left
 				width: 50%
+				display: flex
+				gap: 20px
+				i, a
+					font-style: normal
+					color: #686868
+					text-transform: uppercase
+					text-decoration: none
+					font-size: 1.5rem
+					&:before
+						content:"\2022"
+						padding-right: 15px
+						color: $red
+				a:hover
+					color: $red
+					text-decoration: underline
 
-	// .prefooter
-	// 	background-color: #D6D6D6
-	// 	font-family: 'DIN-Condensed'
-	// 	padding: 1rem 1.5rem
-	// 	overflow: hidden
-	// 	position: relative
-	// 	width: 600px
-	// 	ul
-	// 		animation: animMarquee 5s linear infinite
-	// 		display: flex
-	// 		gap: 20px
-	// 		width: 200%
-	// 		overflow: hidden
-	// 		position: absolute
-	// 		a, li
-	// 			color: #686868
-	// 			text-transform: uppercase
-	// 			text-decoration: none
-	// 			font-size: 1.5rem
-	// 		a:hover
-	// 			text-decoration: underline
-	// 			color: $red
-	// 		li
-	// 			&:before
-	// 				content: "\2022"
-	// 				padding-right: 1rem
-	// 				color: $red
 	.content
 		font-family: 'JetBrainsMono'
 		font-weight: 300
@@ -81,6 +93,8 @@ footer
 		padding-bottom: 45px
 		display: flex
 		gap: 40px
+		@media(max-width: 870px)
+			flex-wrap: wrap
 		.column
 			align-self: flex-end
 			&:first-of-type
@@ -109,6 +123,11 @@ footer
 		font-size: 103px
 		line-height: 122%
 		text-transform: uppercase
+		@media(max-width:1024px)
+			font-size: 90px
+			line-height: 106%
+		@media(max-width: 840px)	
+			font-size: 28px
 ul#circles
 	display: flex
 	gap: 42px
@@ -170,6 +189,7 @@ ul#circles
 				text-decoration: none	
 	&.portfolio
 		width: 100%
+		overflow: hidden
 		.head
 			display: flex
 			gap: 36px
@@ -308,8 +328,9 @@ ul#circles
 				display: grid
 				grid-template-columns: 60% 30%
 				column-gap: 70px
-				//row-gap: 10px
 				align-items: center
+				@media(max-width: 550px)
+					column-gap: 45px
 				&:not(:last-child)
 					margin-bottom: 20px
 				span.label
@@ -366,6 +387,12 @@ body.index-page
 	#wrapper
 		@media(max-width: 1360px)
 			padding: 36px 60px 3rem
+		@media(max-width: 1024px)
+			padding: 36px 2rem 3rem !important
+		@media(max-width: 600px)	
+			margin: 0 !important
+			padding: 1rem !important
+			padding-top: 0 !important
 	.widgets
 		display: grid
 		grid-template-columns: 540px 560px
@@ -390,21 +417,39 @@ body.index-page
 			&.callback
 				grid-row: 3
 				grid-column: 2
+				container-type: inline-size
 				@media(max-width:1360px)
 					align-self: flex-start
+				@media(max-width: 550px)
+					padding: 1.5rem
 			&.blog
 				grid-row: 4
 				grid-column: 1
 			&.skills
 				grid-row: 4
 				grid-column: 2
-@keyframes animMarquee
-	0%
-		transform: translateX(0)
-	100%
-		transform: translateX(100%)
-@keyframes marquee
-	0%
-		left: 0
-	100%
-		left: -100%
+		@media(max-width: 870px)
+			grid-template-columns: 1fr !important
+			gap: 40px
+			.widget
+				&.services
+					grid-column: 1
+					grid-row: 1
+				&.about	
+					grid-column: 1
+					grid-row: 2
+				&.portfolio
+					grid-column: 1
+					grid-row: 3
+				&.features
+					grid-column: 1
+					grid-row: 4
+				&.callback
+					grid-column: 1
+					grid-row: 5
+				&.blog
+					grid-column: 1
+					grid-row: 6
+				&.skills
+					grid-column: 1
+					grid-row: 7

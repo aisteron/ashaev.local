@@ -97,3 +97,58 @@ $notebook: 100%
 		padding: 0 calc(50% - $desktop/2)
 	@media(max-width: 1899px)
 		padding: 1rem
+
+
+@keyframes marquee
+	0%
+		left: 0
+	100%
+		left: -100%
+.mview
+	display: none
+	a
+		font-family: 'DIN-Condensed'
+		text-transform: uppercase
+		font-size: 24px
+		color: $red
+		text-decoration: none
+		&:hover
+			text-decoration: underline
+	@media(max-width:870px)
+		display: flex
+		align-items: center
+		gap: 1rem
+	@media(max-width: 480px)	
+		a
+			font-size: 20px
+#nav-icon1
+	width: 20px
+	height: 15px
+	position: relative
+	transform: rotate(0deg)
+	transition: .5s ease-in-out
+	cursor: pointer
+
+	span
+		display: block
+		position: absolute
+		height: 2px
+		width: 100%
+		background: #000
+		border-radius: 50px
+		opacity: 1
+		left: 0
+		transform: rotate(0deg)
+		transition: .25s ease-in-out
+		pointer-events: none
+
+		&:nth-child(1)
+			top: 0px
+
+		&:nth-child(2)
+			top: 6px
+			height: 2.2px
+			background: $red
+
+		&:nth-child(3)
+			top: 12px		
