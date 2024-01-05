@@ -98,7 +98,6 @@ $notebook: 100%
 	@media(max-width: 1899px)
 		padding: 1rem
 
-
 @keyframes marquee
 	0%
 		left: 0
@@ -117,10 +116,13 @@ $notebook: 100%
 	@media(max-width:870px)
 		display: flex
 		align-items: center
-		gap: 1rem
-	@media(max-width: 480px)	
+		gap: 20px
+	@media(max-width: 480px)
 		a
-			font-size: 20px
+			font-size: 22px
+	@media(max-width: 380px)
+		a
+			font-size: 18px
 #nav-icon1
 	width: 20px
 	height: 15px
@@ -128,6 +130,19 @@ $notebook: 100%
 	transform: rotate(0deg)
 	transition: .5s ease-in-out
 	cursor: pointer
+
+	&.open span
+		&:nth-child(1)
+			top: 6px
+			transform: rotate(135deg)
+
+		&:nth-child(2)
+			opacity: 0
+			left: -60px
+
+		&:nth-child(3)
+			top: 6px
+			transform: rotate(-135deg)
 
 	span
 		display: block
@@ -151,4 +166,16 @@ $notebook: 100%
 			background: $red
 
 		&:nth-child(3)
-			top: 12px		
+			top: 12px
+
+.custom_arrows
+	display: flex
+	gap: 1rem
+	img
+		cursor: pointer
+	.next
+		transform: rotate(180deg)
+		filter: invert(10%) sepia(91%) saturate(6274%) hue-rotate(12deg) brightness(98%) contrast(117%)
+	.swiper-button-disabled
+		filter: invert(90%) sepia(0%) saturate(0%) hue-rotate(182deg) brightness(96%) contrast(83%)
+		cursor: not-allowed
