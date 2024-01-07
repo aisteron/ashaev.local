@@ -177,7 +177,7 @@ ul#circles
 .widget
 	padding-top: 1.5rem
 	padding-bottom: 1.5rem
-	span.title
+	>span.title
 		font-family: 'Montserrat-Alternates'
 		font-weight: 500
 		font-size: 2rem
@@ -426,6 +426,20 @@ ul#circles
 								width: 30px
 								background-color: #FFE600
 								right: -30px
+	&.fun
+		width: 304px
+		.swiper-slide
+			.dsc
+				margin-bottom: 1rem
+			span
+				font-family: 'GNUTypewriter'
+				display: inline-block
+				&.title
+					font-size: 18px
+					margin-bottom: 10px
+				&.author
+					font-size: 1rem
+					color: #807D7D
 body.index-page
 	#wrapper
 		@media(max-width: 1360px)
@@ -520,3 +534,33 @@ body.services-page
 					&:hover
 						color: $red
 						text-decoration: underline
+body.website-page
+	.imageHeader
+		display: flex
+		align-items: center
+		justify-content: space-between
+		h1
+			margin-top: 42px
+			text-align: right
+			i
+				font-style: normal
+				color: $red
+	article
+		.row
+			&.first
+				display: flex
+				justify-content: space-between
+				#content
+					width: 614px
+					position: relative
+					padding-right: 1rem
+					.txt
+						padding-left: 140px
+					.dropCap
+						position: absolute
+						top: 0
+						left: 0
+					.redbutton
+						position: absolute
+						bottom: 0
+						right: -4px

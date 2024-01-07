@@ -179,3 +179,64 @@ $notebook: 100%
 	.swiper-button-disabled
 		filter: invert(90%) sepia(0%) saturate(0%) hue-rotate(182deg) brightness(96%) contrast(83%)
 		cursor: not-allowed
+nav.bread
+	background-image: url(/assets/img/icons/bread_bg.jpg)
+	margin: 0 -120px
+	padding: 0px 120px
+	font-family: 'DIN-Condensed'
+	font-size: 1.5rem
+	ol
+		padding-top: 13px
+		padding-bottom: 10px
+		padding-left: 0
+		list-style: none
+		display: flex
+		gap: 20px
+		li
+			&:last-of-type
+				color: $red
+				&:after
+					content: ""
+			&:after
+				content: "/"
+				color: #807D7D
+				padding-left: 20px
+			a
+				color: #000
+				text-decoration: none
+				&:hover
+					text-decoration: underline
+					color: $red
+.redbutton
+	font-family: 'GNUTypewriter'
+	background-color: $red
+	color: #fff
+	border: none
+	box-shadow: -4px 4px 0px #000
+	padding: 10px 90px
+	font-size: 29px
+	text-transform: uppercase
+	cursor: pointer
+	@media(max-width:480px)
+		padding: 10px 63px
+	&:hover
+		background-color: darken($red, 5%)
+	&:active
+		box-shadow: -2px 2px 0px #000
+article
+	#content
+		background-image: url(/assets/img/icons/txt_bg.jpg)
+		background-repeat: no-repeat
+		background-size: cover
+		.dropCap
+			background: radial-gradient(circle,rgba(217, 218, 226, 1) 0%, rgba(217, 218, 226, 0) 100%)
+			font-family: 'JetBrainsMono'
+			font-weight: 600
+			font-size: 103px
+			padding: 0 20px
+			text-transform: uppercase
+		.txt
+			font-family: 'JetBrainsMono'
+			font-weight: 500
+			font-size: 18px
+			line-height: 30px

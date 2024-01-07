@@ -13,6 +13,7 @@ async function run_widgets() {
 
 	let port = qs(".widget.portfolio");
 	let circles_mobile = qs("#circles.mobile");
+	let fun = qs('.widget.fun')
 	if (port) {
 		let options = {
 			slidesPerView: 3,
@@ -45,6 +46,17 @@ async function run_widgets() {
 		};
 		sw.init(qs(".swiper", circles_mobile), options);
 	}
+
+	if(fun){
+		let options = { 
+			slidesPerView: 1, 
+			autoplay: {
+				delay: 5000,
+			}
+		};
+		sw.init(qs(".swiper", fun), options);
+	}
+
 }
 
 function mobile_menu() {
