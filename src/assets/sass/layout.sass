@@ -232,10 +232,14 @@ ul#circles
 	&.portfolio
 		width: 100%
 		overflow: hidden
+		container-type: inline-size
 		.head
 			display: flex
 			gap: 36px
 			align-items: center
+			@container(max-width: 1024px)
+				flex-wrap: wrap
+				gap: 1rem
 			@media(max-width: 480px)
 				flex-wrap: wrap
 				gap: 1rem
@@ -282,11 +286,28 @@ ul#circles
 				display: flex
 				align-items: center
 				justify-content: space-between
+				@container(max-width: 395px)
+					flex-wrap: wrap
+					gap: 1rem
+			ol.swiper-wrapper
+				padding-left: 0
+				li
+					display: flex
+					align-items: center
+					gap: 50px
+					span
+						&.digit
+							font-weight: 600
+							font-size: 104px
+					&:before
+						content: ''
 	&.callback
 		background-image: url(/assets/img/ui/widgets/cb/bg.jpg)
 		background-size: cover
 		padding: 1.5rem 64px
 		box-shadow: -2px 4px 0px #000
+		@media(max-width: 550px)
+			padding: 1.5rem
 		form
 			display: flex
 			flex-direction: column
@@ -301,6 +322,7 @@ ul#circles
 				align-items: center
 				margin-top: 36px
 				margin-bottom: 26px
+
 				@media(max-width: 600px)
 					flex-wrap: wrap
 				span
@@ -464,18 +486,10 @@ ul#circles
 			.body
 				font-family: 'JetBrainsMono'
 				font-size: 18px
-				line-height: 30px		
+				line-height: 30px
 
 body.index-page
-	#wrapper
-		@media(max-width: 1360px)
-			padding: 36px 60px 3rem
-		@media(max-width: 1024px)
-			padding: 36px 2rem 3rem !important
-		@media(max-width: 600px)
-			margin: 0 !important
-			padding: 1rem !important
-			padding-top: 0 !important
+
 	.widgets
 		display: grid
 		grid-template-columns: 540px 560px
@@ -483,7 +497,6 @@ body.index-page
 		margin-top: 90px
 		@media(max-width: 1360px)
 			grid-template-columns: 1fr 1fr
-
 		.widget
 			&.services
 				grid-column: 1
@@ -503,8 +516,7 @@ body.index-page
 				container-type: inline-size
 				@media(max-width:1360px)
 					align-self: flex-start
-				@media(max-width: 550px)
-					padding: 1.5rem
+
 			&.blog
 				grid-row: 4
 				grid-column: 1
@@ -565,9 +577,25 @@ body.website-page
 		display: flex
 		align-items: center
 		justify-content: space-between
+		gap: 10%
+		@media(max-width:1260px)
+			flex-wrap: wrap
+			align-items: center
+			justify-content: center
+			h1
+				text-align: center
+				margin-top: 1rem
+		@media(max-width:460px)
+			flex-wrap: nowrap
+			gap: 7%
+			img
+				width: 110px
+				height: auto
+			h1
+				text-align: left
 		h1
 			margin-top: 42px
-			text-align: right
+			text-align: left
 			i
 				font-style: normal
 				color: $red
@@ -576,35 +604,71 @@ body.website-page
 			&.first
 				display: flex
 				justify-content: space-between
+				@media(max-width:980px)
+					.widget.fun
+						display: none
+					#content
+						width: 100%
 				#content
 					width: 614px
 					position: relative
 					padding-right: 1rem
+					align-self: baseline
 					.txt
 						padding-left: 140px
+						@media(max-width:460px)
+							padding-left: 0
 					.dropCap
 						position: absolute
 						top: 0
 						left: 0
+						@media(max-width:460px)
+							position: relative
+							margin: 1rem
+							margin-left: 0
+							float: left
 					.redbutton
 						position: absolute
-						bottom: 0
 						right: -4px
+						@media(max-width: 460px)
+							right: inherit
 			&.second
 				display: flex
 				justify-content: space-between
 				gap: 86px
 				margin-top: 2rem
 				margin-bottom: 5rem
+				@media(max-width:990px)
+					flex-wrap: wrap
+					gap: 0
+					margin-top: 5rem
 				.widget
 					&.features
 						width: 535px
 					&.testimonials
 						width: 512px
+					@media(max-width:660px)
+						&.features,&.testimonials
+							width: 90%
 			&.third
 				margin-top: 5rem
 				display: flex
 				align-items: center
 				justify-content: space-between
 				align-items: flex-start
-				gap: 80px				
+				gap: 80px
+				@media(max-width:900px)
+					flex-wrap: wrap
+					gap: 1rem
+					margin-bottom: 2rem
+				.widget
+					&.callback
+						padding-top: 1rem
+						min-width: 500px
+						@media(max-width: 540px)
+							min-width: auto
+body.service-page
+	h1
+		i
+			font-style: normal
+			color: $red

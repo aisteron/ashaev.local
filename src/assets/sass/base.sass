@@ -173,6 +173,7 @@ $notebook: 100%
 	gap: 1rem
 	img
 		cursor: pointer
+		min-width: 40px
 	.next
 		transform: rotate(180deg)
 		filter: invert(10%) sepia(91%) saturate(6274%) hue-rotate(12deg) brightness(98%) contrast(117%)
@@ -181,17 +182,26 @@ $notebook: 100%
 		cursor: not-allowed
 nav.bread
 	background-image: url(/assets/img/icons/bread_bg.jpg)
+	background-repeat: no-repeat
 	margin: 0 -120px
 	padding: 0px 120px
 	font-family: 'DIN-Condensed'
 	font-size: 1.5rem
+	@media(max-width:1360px)
+		margin: 0 -60px
+		padding: 0px 60px
+	@media(max-width:1360px)
+		margin: 0 -2rem
+		padding: 0px 2rem
 	ol
 		padding-top: 13px
 		padding-bottom: 10px
 		padding-left: 0
 		list-style: none
 		display: flex
+		flex-wrap: wrap
 		gap: 20px
+
 		li
 			&:last-of-type
 				color: $red
@@ -246,6 +256,15 @@ article
 	margin: 0 -150px
 	padding: 2rem 150px
 	font-family: 'Montserrat-Alternates'
+	@media(max-width:1024px)
+		margin: 0 -3rem
+		padding: auto
+	@media(max-width:900px)
+		padding-left: 2rem
+	@media(max-width:600px)
+		padding-left: 3rem
+		.offer
+			font-size: 2rem
 	.offer
 		font-size: 68px
 		font-weight: 600
@@ -262,6 +281,17 @@ article
 		right: 0
 		top: -27px
 		cursor: pointer
+		@media(max-width:1300px)
+			right: 5%
+		@media(max-width:1170px)
+			top: 10%
+		@media(max-width:600px)
+			top: -27px !important
+			transform: scale(0.8)
+		@media(max-width:440px)
+			right: -1rem
+			transform: scale(0.5)
+
 		&:hover
 			filter: invert(14%) sepia(86%) saturate(4740%) hue-rotate(357deg) brightness(97%) contrast(84%)
 		span
@@ -271,4 +301,12 @@ article
 			font-size: 29px
 			text-transform: uppercase
 			color: #fff
-		
+#wrapper
+	@media(max-width: 1360px)
+		padding: 36px 60px 3rem
+	@media(max-width: 1024px)
+		padding: 36px 2rem 3rem !important
+	@media(max-width: 600px)
+		margin: 0 !important
+		padding: 1rem !important
+		padding-top: 0 !important

@@ -19,7 +19,7 @@ async function run_widgets() {
 
 	if (port) {
 		let options = {
-			slidesPerView: 3,
+			slidesPerView: qs('.website-page') ? 2 : 3,
 			spaceBetween: 24,
 			navigation: {
 				nextEl: qs(".next", port),
@@ -31,7 +31,7 @@ async function run_widgets() {
 					spaceBetween: 20
 				},
 				991: {
-					slidesPerView: 3,
+					slidesPerView: qs('.website-page') ? 2 : 3,
 					spaceBetween: 20
 				}
 			}
