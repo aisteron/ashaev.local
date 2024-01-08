@@ -177,7 +177,7 @@ ul#circles
 .widget
 	padding-top: 1.5rem
 	padding-bottom: 1.5rem
-	>span.title
+	>span.title, .head .title
 		font-family: 'Montserrat-Alternates'
 		font-weight: 500
 		font-size: 2rem
@@ -245,7 +245,6 @@ ul#circles
 				opacity: 0.7
 	&.features
 		container-type: inline-size
-
 		ol
 			list-style: none
 			counter-reset: my-awesome-counter
@@ -278,6 +277,11 @@ ul#circles
 		@container(max-width: 400px)
 			ol
 				width: 100%
+		&.slider
+			.head
+				display: flex
+				align-items: center
+				justify-content: space-between
 	&.callback
 		background-image: url(/assets/img/ui/widgets/cb/bg.jpg)
 		background-size: cover
@@ -440,6 +444,28 @@ ul#circles
 				&.author
 					font-size: 1rem
 					color: #807D7D
+	&.testimonials
+		> .head
+			display: flex
+			justify-content: space-between
+			align-items: center
+		.swiper-slide
+			.head
+				display: flex
+				align-items: center
+				gap: 2rem
+				margin-bottom: 1rem
+				margin-top: 18px
+				.author
+					font-family: 'GNUTypewriter'
+				hr
+					flex-grow: 1
+					margin: 0
+			.body
+				font-family: 'JetBrainsMono'
+				font-size: 18px
+				line-height: 30px		
+
 body.index-page
 	#wrapper
 		@media(max-width: 1360px)
@@ -564,3 +590,21 @@ body.website-page
 						position: absolute
 						bottom: 0
 						right: -4px
+			&.second
+				display: flex
+				justify-content: space-between
+				gap: 86px
+				margin-top: 2rem
+				margin-bottom: 5rem
+				.widget
+					&.features
+						width: 535px
+					&.testimonials
+						width: 512px
+			&.third
+				margin-top: 5rem
+				display: flex
+				align-items: center
+				justify-content: space-between
+				align-items: flex-start
+				gap: 80px				

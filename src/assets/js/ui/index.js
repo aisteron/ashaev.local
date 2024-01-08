@@ -14,6 +14,9 @@ async function run_widgets() {
 	let port = qs(".widget.portfolio");
 	let circles_mobile = qs("#circles.mobile");
 	let fun = qs('.widget.fun')
+	let features_slider = qs('.widget.features.slider')
+	let testimonials = qs('.widget.testimonials')
+
 	if (port) {
 		let options = {
 			slidesPerView: 3,
@@ -55,6 +58,27 @@ async function run_widgets() {
 			}
 		};
 		sw.init(qs(".swiper", fun), options);
+	}
+	if(features_slider){
+		let options = { 
+			slidesPerView: 1, 
+			navigation: {
+				nextEl: qs(".next", features_slider),
+				prevEl: qs(".prev", features_slider)
+			},
+		};
+		sw.init(qs(".swiper", features_slider), options);
+	}
+
+	if(testimonials){
+		let options = { 
+			slidesPerView: 1,
+			navigation: {
+				nextEl: qs(".next", testimonials),
+				prevEl: qs(".prev", testimonials)
+			},
+		};
+		sw.init(qs(".swiper", testimonials), options);
 	}
 
 }
