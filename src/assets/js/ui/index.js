@@ -1,11 +1,12 @@
 import { fancy, qs, sw } from "../libs";
-
+import { highlight } from "../libs";
 export async function Ui() {
 	run_widgets();
 	await fancy.load();
 	Fancybox.bind("[data-fancybox]", {});
 
 	mobile_menu();
+	high()
 }
 
 async function run_widgets() {
@@ -103,4 +104,10 @@ function mobile_menu() {
 	});
 	
 	underlay.listen("click",_ => icon.click())
+}
+
+async function high(){
+	if(!qs('.article-page')) return
+	await highlight.load()
+	highlight.init()
 }

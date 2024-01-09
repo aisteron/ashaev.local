@@ -1,0 +1,31 @@
+article
+	span.date 03.2019
+	h1 Авторизация / регистрация в MODx
+	p Авторизация в modx рабоает на основе сессий. Встроенный механизм жуток и непонятен даже посвященным. Мы будет ее делать свой вариант на допольнительных полях и куках.
+	p Логика такая:
+	ul
+		li Если пользователь найден
+		li Если у него нет доп. поля access_token, то создаем и сохраняем
+
+	p.b Сниппет login
+	
+	pre
+		code.language-php
+			| $data = json_decode($data[‘data’],true);
+			| $data = array(
+			| ‘username’ => $data[‘username’],
+			| ‘password’ => $data[‘password’],
+			| ‘rememberme’ => 1,
+			| ‘login_context’ => ‘web’,
+			| );
+	pre
+		code.language-javascript
+			|	const WebpackShellPlugin = require('webpack-shell-plugin')
+			|	const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+			|
+			|	plugins: [
+			|		new CleanWebpackPlugin(),
+			|		new WebpackShellPlugin({
+			|			onBuildStart:['echo • Start building awesome'], 
+			|			onBuildEnd:['bash deploy/start.sh']})]
+			|	})			

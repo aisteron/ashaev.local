@@ -100,3 +100,26 @@ export const fancy = {
 	},
 
 }
+
+export const highlight = {
+	async load(){
+		
+		return new Promise(resolve =>{
+			
+			if(qs(['high'])){resolve(true); return}
+
+			let script = document.createElement("script")
+			script.src="/vendors/highlight/highlight.min.js"
+			script.setAttribute("high","")
+			qs(".scripts-area").appendChild(script)
+			
+			script.onload = () => {
+				let style = loadCSS("/vendors/highlight/default.min.css")
+				onloadCSS(style, () => resolve(true))
+			}
+		})
+	},
+	init(){
+		hljs.highlightAll();
+	}
+}
