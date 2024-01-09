@@ -7,6 +7,7 @@ export async function Ui() {
 
 	mobile_menu();
 	high()
+	cb_form.listen()
 }
 
 async function run_widgets() {
@@ -110,4 +111,41 @@ async function high(){
 	if(!qs('.article-page')) return
 	await highlight.load()
 	highlight.init()
+}
+
+
+const cb_form = {
+
+	form:qs('.widget.callback'),
+
+	async send(){
+
+	},
+	
+	listen(){
+		if(!this.form) return
+		let f = qs('form', this.form)
+		
+
+		f.listen("submit", e => {
+			e.preventDefault()
+			let o = {
+				name: qs("[name='name']", f).value,
+				phone: qs("[name='phone']", f).value,
+			}
+			fetch('http://new.ashaev.by/assets/api.php',{
+				method: "POST",
+				headers:{'Content-Type':'application/json'},
+				body: JSON.stringify(o)
+			})
+		})
+
+		qs('[type="file"]',f).listen("change", e => {
+			let file = e.target.files[0]
+			file
+			? qs('.txt',f).innerHTML = file.name
+			: qs('.txt',f).innerHTML = "Файл не выбран"
+		})
+
+	}
 }

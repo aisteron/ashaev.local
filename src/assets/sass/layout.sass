@@ -682,7 +682,7 @@ body.service-page
 		i
 			font-style: normal
 			color: $red
-	article		
+	article
 		.columns
 			display: flex
 			gap: 42px
@@ -716,7 +716,7 @@ body.service-page
 					.redbutton
 						position: absolute
 						right: -4px
-						bottom: -61px	
+						bottom: -61px
 			.right
 				flex-grow: 1
 				min-width: 0
@@ -762,7 +762,7 @@ body.article-page
 			p, ul, ol
 				font-size: 18px
 			p.b
-				font-weight: bold	
+				font-weight: bold
 			ul
 				li
 					line-height: 30px
@@ -778,8 +778,17 @@ body.contacts-page
 		margin-bottom: 2rem
 		@media(max-width:1050px)
 			grid-template-columns: 1fr 440px
-		@media(max-width:870px)
-			grid-template-columns: 1fr 1fr
+		@media(max-width:830px)
+			grid-template-columns: 1fr
+			gap: 0
+			>*
+				grid-column: 1 !important
+				grid-row: auto !important
+			ul.pe
+				margin-top: 2rem
+				padding-top: 1rem
+				padding-bottom: 1rem
+
 		a
 			color: #000
 			text-decoration: none
@@ -804,4 +813,4 @@ body.contacts-page
 			grid-column: 1
 		.widget.callback
 			grid-row: 2/4
-			grid-column: 2	
+			grid-column: 2
