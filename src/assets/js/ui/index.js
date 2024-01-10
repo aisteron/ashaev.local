@@ -123,29 +123,79 @@ const cb_form = {
 		let obj = {
 			name: qs("[name='name']", this.form).value,
 			phone: qs("[name='phone']", this.form).value,
-			file: qs('[type="file"]', this.form).files[0]
+			file: qs('[type="file"]', this.form)?.files[0]
 		}
+
+
 		const formData = new FormData()
 		formData.append('files[]', obj.file)
 		formData.append("action", "callback");
 		formData.append("name", obj.name);
 		formData.append("phone", obj.phone);
+		let path = process.env.NODE_ENV == 'development'
+			? 'http://new.ashaev.by/assets/api/'
+			: '/assets/api/'
+
+		if(!await this.validate(obj)) return
+		await load_toast()
+
+		try {
+			
+			let res = await fetch(path, {method: 'POST',body: formData}).then(r => r.json())
+			
+			if(!res.success){
+				res.message
+				? new Snackbar(res.message)
+				: new Snackbar("Что-то пошло не так")
+			} else {
+				this.form_clean()
+				new Snackbar("👌 Спасибо! Успешно отправлено")
+			}
+
+		
+		} catch(e){
+			new Snackbar(e)
+		}
+		
 
 
-		fetch('http://new.ashaev.by/assets/api/index.php', {
-			method: 'POST',
-			body: formData,
-		})
+	},
 
+	async validate(obj){
+		let result = true
+		if(obj.file == undefined) return result
+		// input file-а может не быть в форме
+		// или тз могут не захотеть прислать
 
+		let allowed_filetypes = new Set([
+			"application/pdf",
+			"application/msword",
+			"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+		])
+
+		if(!allowed_filetypes.has(obj.file.type)){
+			await load_toast()
+			new Snackbar("Неразрешенный тип файла")
+			result = false
+		}
+
+		if(obj.file.size > 5 * 1024 * 1024){
+			await load_toast()
+			new Snackbar("Файл весит больше 5 Мб")
+			result = false
+		}
+		
+		return result
+		
 	},
 
 	form_clean(){
 		let inputs = [...qsa('input[type="text"]', this.form), qs('input[type="file"]', this.form)]
-		inputs.forEach(i => i.value='')
+		inputs.forEach(i => i && (i.value=''))
 	},
 	
 	listen(){
+
 		if(!this.form) return
 		let f = qs('form', this.form)
 		
@@ -153,27 +203,10 @@ const cb_form = {
 		f.listen("submit", async e => {
 			e.preventDefault()
 			await load_toast()
-
-			let o = {
-				name: qs("[name='name']", f).value,
-				phone: qs("[name='phone']", f).value,
-			}
 			this.send()
-			// try {
-			// 	let res = await xml("callback", JSON.stringify(o), "/api")
-			// 	res = JSON.parse(res)
-			// 	res.success
-			// 	? (new Snackbar("✅ Успешно отправлено"),this.form_clean())
-			// 	: new Snackbar("Какая-то ошибка")
-			// } catch(e){
-			// 		new Snackbar(e)
-			// }
-
-			
-
 		})
 
-		qs('[type="file"]',f).listen("change", e => {
+		qs('[type="file"]',f)?.listen("change", e => {
 			let file = e.target.files[0]
 			file
 			? qs('.txt',f).innerHTML = file.name
