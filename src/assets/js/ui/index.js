@@ -1,4 +1,4 @@
-import { fancy, qs, sw } from "../libs";
+import { fancy, load_toast, qs, qsa,sw, xml } from "../libs";
 import { highlight } from "../libs";
 export async function Ui() {
 	run_widgets();
@@ -120,6 +120,29 @@ const cb_form = {
 
 	async send(){
 
+		let obj = {
+			name: qs("[name='name']", this.form).value,
+			phone: qs("[name='phone']", this.form).value,
+			file: qs('[type="file"]', this.form).files[0]
+		}
+		const formData = new FormData()
+		formData.append('files[]', obj.file)
+		formData.append("action", "callback");
+		formData.append("name", obj.name);
+		formData.append("phone", obj.phone);
+
+
+		fetch('http://new.ashaev.by/assets/api/index.php', {
+			method: 'POST',
+			body: formData,
+		})
+
+
+	},
+
+	form_clean(){
+		let inputs = [...qsa('input[type="text"]', this.form), qs('input[type="file"]', this.form)]
+		inputs.forEach(i => i.value='')
 	},
 	
 	listen(){
@@ -127,17 +150,27 @@ const cb_form = {
 		let f = qs('form', this.form)
 		
 
-		f.listen("submit", e => {
+		f.listen("submit", async e => {
 			e.preventDefault()
+			await load_toast()
+
 			let o = {
 				name: qs("[name='name']", f).value,
 				phone: qs("[name='phone']", f).value,
 			}
-			fetch('http://new.ashaev.by/assets/api.php',{
-				method: "POST",
-				headers:{'Content-Type':'application/json'},
-				body: JSON.stringify(o)
-			})
+			this.send()
+			// try {
+			// 	let res = await xml("callback", JSON.stringify(o), "/api")
+			// 	res = JSON.parse(res)
+			// 	res.success
+			// 	? (new Snackbar("✅ Успешно отправлено"),this.form_clean())
+			// 	: new Snackbar("Какая-то ошибка")
+			// } catch(e){
+			// 		new Snackbar(e)
+			// }
+
+			
+
 		})
 
 		qs('[type="file"]',f).listen("change", e => {

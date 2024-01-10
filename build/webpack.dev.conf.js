@@ -1,5 +1,6 @@
 const webpack =  require('webpack')
 const merge = require('webpack-merge')
+const fs = require('fs')
 const baseWebpackConfig = require('./webpack.base.conf')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -13,6 +14,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     overlay: {
       warnings: true,
       errors: true
+    },
+		setup(app){
+      var bodyParser = require('body-parser');    
+      app.use(bodyParser.urlencoded({extended : true}));
+      app.use(bodyParser.json());
+      
+      app.post('/api', (req, res) => {
+					if(req.body.action == 'callback'){
+						const data = fs.readFileSync('./src/static/api/zayavka.json', 'utf8')
+						res.send(data)
+					}	
+      });
     }
   },
   plugins: [
