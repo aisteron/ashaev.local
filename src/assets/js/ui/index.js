@@ -8,6 +8,7 @@ export async function Ui() {
 	mobile_menu();
 	high()
 	cb_form.listen()
+	modals()
 }
 
 async function run_widgets() {
@@ -214,4 +215,83 @@ const cb_form = {
 		})
 
 	}
+}
+
+function modals(){
+	let cb_modal = qs('.modal.cb')
+	let discount_modal = qs('.modal.discount')
+	
+
+	// callback popup
+
+	let cb_trigger = qs('nav li.cb')
+	let get_know_price_trigger = qs('#content .redbutton');
+
+	[cb_trigger, get_know_price_trigger].forEach(el => 
+		el?.listen("click", _ => cb_modal.classList.add('open')))
+
+	qs('.close', cb_modal).listen("click", _ => 
+		cb_modal.classList.remove('open'))
+
+	// discount popup	
+
+	qs("#discount .cta")?.listen("click", _ =>
+		discount_modal.classList.add('open') )
+	
+	qs('.close', discount_modal)?.listen("click", _ => 
+		discount_modal.classList.remove('open'))
+
+
+	// close on empty space	
+
+	document.listen("click", e => {
+		
+		if(qs('.modal-content',discount_modal).contains(e.target)) return
+		if(qs('.modal-content',cb_modal).contains(e.target)) return
+
+		if(
+			e.target == cb_trigger || 
+			e.target == qs("#discount .cta") ||
+			e.target == get_know_price_trigger
+			 ) return
+		qsa('.modal').forEach(el => el.classList.remove('open'))
+	})
+
+	// close by esc
+
+	document.listen("keyup", e => {
+		e.keyCode == 27
+		&& qsa('.modal').forEach(el => el.classList.remove('open'))
+	})
+
+	// to server
+
+	qsa('.modal form').forEach(el => {
+		el.listen("submit", async (e) => {
+			e.preventDefault()
+
+			let o = {
+				phone: qs('[type=text]',e.target).value,
+				type: e.target.closest('.discount') ? 'discount': 'cb'
+			}
+
+			await load_toast()
+
+			try {
+				
+				let res = await xml("callback",o,"/api").then(r => JSON.parse(r))
+				res.success
+				? (
+						new Snackbar("👌 Успешно отправлено"),
+						qs('[type=text]',e.target).value='',
+						setTimeout(()=>qsa('.modal').forEach(el => el.classList.remove('open')),2000)
+					)
+				: new Snackbar("❌ Ошибка отправки")
+			} catch(e){
+				new Snackbar(e)
+			}
+			
+			
+		})
+	})
 }
