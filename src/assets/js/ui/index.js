@@ -51,8 +51,11 @@ async function run_widgets() {
 			},
 			on: {
 				init: function () {
-					qs('.swiper-wrapper', circles_mobile)
-					.classList.remove('oh')
+					setTimeout(()=>{
+						qs('.swiper-wrapper', circles_mobile)
+							.classList.remove('oh')
+					},3000)
+					
 				},
 			},
 		};
