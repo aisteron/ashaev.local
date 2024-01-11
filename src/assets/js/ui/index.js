@@ -48,7 +48,13 @@ async function run_widgets() {
 			navigation: {
 				nextEl: qs(".next", circles_mobile),
 				prevEl: qs(".prev", circles_mobile)
-			}
+			},
+			on: {
+				init: function () {
+					qs('.swiper-wrapper', circles_mobile)
+					.classList.remove('oh')
+				},
+			},
 		};
 		sw.init(qs(".swiper", circles_mobile), options);
 	}
