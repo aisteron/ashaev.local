@@ -125,6 +125,10 @@ footer
 			flex-wrap: wrap
 		.column
 			align-self: flex-end
+			a
+				&:hover
+					text-decoration: none
+					color: $red
 			&:first-of-type
 				span
 					line-height: 150%
@@ -820,3 +824,27 @@ body.contacts-page
 		.widget.callback
 			grid-row: 2/4
 			grid-column: 2
+body.not-found-page
+	article
+		//position: relative
+		@media(max-width:840px)
+			min-height: 350px
+		img.anime
+			position: absolute
+			right: 120px
+			bottom: 0
+			z-index: 3
+			@media(max-width:1360px)
+				right: 60px
+			@media(max-width:1024px)
+				right: 2rem
+			@media(max-width:840px)
+				bottom: 2rem
+			@media(max-width:600px)
+				bottom: 0 !important
+
+			
+		h1
+			i
+				font-style: normal
+				color: $red
